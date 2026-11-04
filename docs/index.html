@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>손글씨 숫자 인식</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="app">
+    <h1>손글씨 숫자 인식</h1>
+    <p class="guide">아래 칸에 0~9 숫자 하나를 크게 그려보세요.</p>
+
+    <div class="layout">
+      <!-- 왼쪽: 숫자를 그리는 그림판 -->
+      <section class="board">
+        <canvas id="drawCanvas" width="280" height="280"></canvas>
+        <button id="clearButton" type="button">지우기</button>
+      </section>
+
+      <!-- 오른쪽: 인식 결과 -->
+      <section class="result">
+        <div id="resultDigit" class="digit">?</div>
+        <div id="resultText" class="status">모델을 불러오는 중...</div>
+        <ul id="probList" class="prob-list"></ul>
+      </section>
+    </div>
+  </main>
+
+  <script src="script.js"></script>
+</body>
+</html>

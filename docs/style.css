@@ -1,0 +1,154 @@
+/* 색상 변수: 라이트 모드 기본값 */
+:root {
+  --bg: #f4f6fa;
+  --card: #ffffff;
+  --text: #1d2433;
+  --muted: #6b7385;
+  --accent: #2a7de1;
+  --accent-soft: #b9d3f3;
+  --track: #e6eaf1;
+}
+
+/* 다크 모드일 때 색상 변경 */
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12151c;
+    --card: #1c212b;
+    --text: #e8ebf2;
+    --muted: #9aa3b5;
+    --accent: #5a9cf0;
+    --accent-soft: #34507a;
+    --track: #2a303c;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+}
+
+.app {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 32px 16px;
+}
+
+h1 {
+  margin: 0 0 4px;
+  font-size: 28px;
+}
+
+.guide {
+  margin: 0 0 24px;
+  color: var(--muted);
+}
+
+/* 그림판과 결과를 가로로 배치 */
+.layout {
+  display: flex;
+  gap: 24px;
+  flex-wrap: wrap;
+}
+
+.board,
+.result {
+  background: var(--card);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+.board {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* 그림판: 화면이 좁으면 자동으로 작아진다 */
+#drawCanvas {
+  width: 280px;
+  max-width: 100%;
+  aspect-ratio: 1 / 1;
+  background: #000;
+  border-radius: 8px;
+  cursor: crosshair;
+  touch-action: none; /* 모바일에서 그릴 때 화면이 스크롤되지 않게 함 */
+}
+
+button {
+  padding: 10px;
+  font-size: 16px;
+  font-family: inherit;
+  border: none;
+  border-radius: 8px;
+  background: var(--accent);
+  color: #fff;
+  cursor: pointer;
+}
+
+button:hover {
+  filter: brightness(1.1);
+}
+
+.result {
+  flex: 1;
+  min-width: 240px;
+}
+
+.digit {
+  font-size: 88px;
+  font-weight: bold;
+  text-align: center;
+  line-height: 1.1;
+}
+
+.status {
+  text-align: center;
+  color: var(--muted);
+  margin-bottom: 16px;
+}
+
+/* 0~9 확률 막대그래프 */
+.prob-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.prob-list li {
+  display: grid;
+  grid-template-columns: 16px 1fr 44px;
+  align-items: center;
+  gap: 8px;
+  margin: 4px 0;
+  font-size: 14px;
+}
+
+.bar-track {
+  height: 12px;
+  background: var(--track);
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+.bar-fill {
+  height: 100%;
+  width: 0;
+  background: var(--accent-soft);
+  transition: width 0.2s;
+}
+
+.prob-list li.best .bar-fill {
+  background: var(--accent);
+}
+
+.prob-value {
+  text-align: right;
+  color: var(--muted);
+}
